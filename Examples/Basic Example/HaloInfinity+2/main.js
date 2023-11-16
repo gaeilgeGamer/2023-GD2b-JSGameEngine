@@ -47,7 +47,7 @@ function handlePlayerMovement(){
     if(keys.ArrowUp && playerY > 0) {
         playerY -= 3; 
     }
-    if(keys.ArrowDown && playerX < gameHeight - playerHeight) {
+    if(keys.ArrowDown && playerY < gameHeight - playerHeight) {
         playerY += 3; 
     }
 }
