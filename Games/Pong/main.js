@@ -16,6 +16,11 @@ let ballSpeedY = 2;
 let player1Y = height/2 - paddleHeight/2; 
 let player2Y = height/2 - paddleHeight/2;
 
+function drawRect(x,y,w,h,color){
+    context.fillStyle = color; 
+    context.fillRect(x,y,w,h);
+}
+
 function drawCircle(x,y,r, color){
     context.fillStyle = color; 
     context.beginPath();
@@ -44,7 +49,7 @@ function collisionDetection(){
         ballSpeedY = deltaY * .35;
     }
 
-    if(ballX-ballRadius<paddleWidth && ballY> player2Y 
+    if(ballX+ballRadius>width-paddleWidth && ballY> player2Y
         && ballY<player2Y + paddleHeight){
             ballSpeedX = -ballSpeedX;
             let deltaY = ballY - (player2Y + paddleHeight/2);
@@ -67,6 +72,29 @@ function collisionDetection(){
 
 
 function update(){
+if (upPressed){
+    player1Y -= 5;
+} else if (downPressed){
+    player1Y += 5;
+}
+
+if(wPressed){
+    player2Y -=5; 
+} else if(sPressed){
+    player2Y +=5; 
+}
+
+ballX += ballSpeedX; 
+ballY += ballSpeedY; 
+
+collisionDetection();
+
+drawRect(0,0,width, height, "#eee");
+drawRect(0,player1Y, paddleWidth, paddleHeight, "black");
+drawRect(width-paddleWidth, player2Y,paddleWidth, paddleHeight, "black");
+drawCircle(ballX, ballY, ballRadius, "black");
+drawText(player1Score, width/4, 50, "black");
+drawText(player2Score, 3*width/4, 50, "black");
 
 }
 
