@@ -35,3 +35,4 @@ class Physics extends Component{
             return [left,right,top, bottom];
         }
 }
+export default Physics
